@@ -43,12 +43,10 @@ class StudentList {
             if ($student['id'] == $id) {
                 array_splice($this->students, $index, 1);
                 $_SESSION['students'] = $this->students;
-                header('Content-Type: application/json');
-                echo json_encode(["success" => "Student with ID $id deleted successfully"], JSON_PRETTY_PRINT);
-                return;
+                return json_encode(["success" => "Student with ID $id deleted successfully"], JSON_PRETTY_PRINT);
             }
         }
-        echo json_encode(["error" => "Student ID $id not found"], JSON_PRETTY_PRINT);
+        return json_encode(["error" => "Student ID $id not found"], JSON_PRETTY_PRINT);
     }
 
     public function editStudent($id, $newName, $newDepartment, $newEmail) {
@@ -93,26 +91,27 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['action'])) {
 
         if ($id_param && $new_name && $new_department && $new_email) {
             $updated = $studentList->editStudent($id_param, $new_name, $new_department, $new_email);
-            echo json_encode(["message" => $updated ? "Student updated successfully!" : "Student not found!"]);
-            echo json_encode($studentList->getStudentsArray());
+            header('Content-Type: application/json');
+            echo json_encode(["message" => $updated ? "Student updated successfully!" : "Student not found!"], JSON_PRETTY_PRINT);
             exit();
         }
     }
 
     if ($action === 'delete') {
         $id_param = isset($_POST['student_id']) ? htmlspecialchars($_POST['student_id']) : '';
-        $studentList->deleteStudent($id_param);
+        $response = $studentList->deleteStudent($id_param);
         header('Content-Type: application/json');
-        echo json_encode($studentList->getStudentsArray(), JSON_PRETTY_PRINT);
+        echo $response;
         exit();
     }
-
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "GET") {
-
     header('Content-Type: application/json');
     echo json_encode($studentList->getStudentsArray(), JSON_PRETTY_PRINT);
+    exit();
 }
 
+header('Content-Type: application/json');
+echo json_encode($studentList->getStudentsArray(), JSON_PRETTY_PRINT);
 ?>
