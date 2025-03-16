@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Student Management</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+
+  <body
+    class="w-screen h-screen flex justify-center items-center gap-4 p-5 bg-gray-100"
+  >
+    <section
+      class="w-full max-w-[1440px] h-fit flex justify-between items-center gap-4 p-5 bg-gray-100"
+    >
+      <div class="w-full h-full max-w-md p-2 space-y-6 rounded-lg">
+        <h2 class="text-2xl font-bold text-center text-gray-700">
+          Student Management
+        </h2>
+        <!-- Show Student Form -->
+        <div
+          class="flex flex-col item-start justify-center w-full h-fit p-6 space-y-6 bg-white rounded-lg shadow-lg"
+        >
+          <h2 class="text-2xl font-bold text-center text-gray-700">
+            Show All Student
+          </h2>
+          <form action="data.php" method="POST" class="space-y-4">
+            <input type="hidden" name="action" value="edit" />
+            <button
+              type="submit"
+              class="w-full px-4 py-2 font-bold text-white bg-purple-500 rounded-lg hover:bg-purple-600"
+            >
+              Show All Student
+            </button>
+          </form>
+        </div>
+
+        <!-- Delete Student Form -->
+        <div class="w-full h-fit p-4 space-y-6 bg-white rounded-lg shadow-lg">
+          <h2 class="text-2xl font-bold text-center text-gray-700">
+            Delete Student
+          </h2>
+          <form action="data.php" method="POST" class="space-y-4">
+            <input type="hidden" name="action" value="delete" />
+            <div>
+              <label
+                class="block text-sm font-medium text-gray-600"
+                for="delete_student_id"
+                >Student ID</label
+              >
+              <input
+                type="text"
+                id="delete_student_id"
+                name="student_id"
+                class="w-full px-4 py-2 mt-1 border rounded-lg focus:ring focus:ring-blue-300"
+                placeholder="1"
+                required
+              />
+            </div>
+            <button
+              type="submit"
+              class="w-full px-4 py-2 font-bold text-white bg-red-500 rounded-lg hover:bg-red-600"
+            >
+              Delete Student
+            </button>
+          </form>
+        </div>
+      </div>
+
+      <!-- Add Student Form -->
+      <div class="w-full max-w-md p-4 space-y-6 bg-white rounded-lg shadow-lg">
+        <h2 class="text-2xl font-bold text-center text-gray-700">
+          Add Student
+        </h2>
+        <form action="data.php" method="POST" class="space-y-4">
+          <input type="hidden" name="action" value="add" />
+          <div>
+            <label
+              class="block text-sm font-medium text-gray-600"
+              for="student_id"
+              >Student ID</label
+            >
+            <input
+              type="text"
+              id="student_id"
+              name="student_id"
+              class="w-full px-4 py-2 mt-1 border rounded-lg focus:ring focus:ring-blue-300"
+              placeholder="1"
+              required
+            />
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-gray-600" for="name"
+              >Full Name</label
+            >
+            <input
+              type="text"
+              id="name"
+              name="name"
+              class="w-full px-4 py-2 mt-1 border rounded-lg focus:ring focus:ring-blue-300"
+              placeholder="John Doe"
+              required
+            />
+          </div>
+          <div>
+            <label
+              class="block text-sm font-medium text-gray-600"
+              for="department"
+              >Department</label
+            >
+            <input
+              type="text"
+              id="department"
+              name="department"
+              class="w-full px-4 py-2 mt-1 border rounded-lg focus:ring focus:ring-blue-300"
+              placeholder="Information Technology"
+              required
+            />
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-gray-600" for="email"
+              >Email</label
+            >
+            <input
+              type="email"
+              id="email"
+              name="email"
+              class="w-full px-4 py-2 mt-1 border rounded-lg focus:ring focus:ring-blue-300"
+              placeholder="john@example.com"
+              required
+            />
+          </div>
+          <button
+            type="submit"
+            class="w-full px-4 py-2 font-bold text-white bg-blue-500 rounded-lg hover:bg-blue-600"
+          >
+            Add Student
+          </button>
+        </form>
+      </div>
+
+      <!-- Edit Student Form -->
+      <div class="w-full max-w-md p-4 space-y-6 bg-white rounded-lg shadow-lg">
+        <h2 class="text-2xl font-bold text-center text-gray-700">
+          Edit Student
+        </h2>
+        <form action="data.php" method="POST" class="space-y-4">
+          <input type="hidden" name="action" value="edit" />
+          <div>
+            <label
+              class="block text-sm font-medium text-gray-600"
+              for="edit_student_id"
+              >Student ID</label
+            >
+            <input
+              type="text"
+              id="edit_student_id"
+              name="student_id"
+              class="w-full px-4 py-2 mt-1 border rounded-lg focus:ring focus:ring-blue-300"
+              placeholder="1"
+              required
+            />
+          </div>
+          <div>
+            <label
+              class="block text-sm font-medium text-gray-600"
+              for="edit_name"
+              >Full Name</label
+            >
+            <input
+              type="text"
+              id="edit_name"
+              name="name"
+              class="w-full px-4 py-2 mt-1 border rounded-lg focus:ring focus:ring-blue-300"
+              placeholder="John Doe"
+              required
+            />
+          </div>
+          <div>
+            <label
+              class="block text-sm font-medium text-gray-600"
+              for="edit_department"
+              >Department</label
+            >
+            <input
+              type="text"
+              id="edit_department"
+              name="department"
+              class="w-full px-4 py-2 mt-1 border rounded-lg focus:ring focus:ring-blue-300"
+              placeholder="Information Technology"
+              required
+            />
+          </div>
+          <div>
+            <label
+              class="block text-sm font-medium text-gray-600"
+              for="edit_email"
+              >Email</label
+            >
+            <input
+              type="email"
+              id="edit_email"
+              name="email"
+              class="w-full px-4 py-2 mt-1 border rounded-lg focus:ring focus:ring-blue-300"
+              placeholder="john@example.com"
+              required
+            />
+          </div>
+          <button
+            type="submit"
+            class="w-full px-4 py-2 font-bold text-white bg-yellow-500 rounded-lg hover:bg-yellow-600"
+          >
+            Edit Student
+          </button>
+        </form>
+      </div>
+    </section>
+    <script>
+      window.onload = function () {
+        fetch("data.php")
+          .then((response) => response.json())
+          .then((data) => {
+            console.log(data);
+          });
+      };
+    </script>
+  </body>
+</html>
